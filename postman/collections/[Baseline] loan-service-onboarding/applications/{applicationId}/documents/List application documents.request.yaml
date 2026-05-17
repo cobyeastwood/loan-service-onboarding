@@ -1,0 +1,39 @@
+type: http
+name: List application documents
+url: '{{baseUrl}}/applications/:applicationId/documents'
+method: GET
+headers:
+  - key: Accept
+    value: application/json
+pathVariables:
+  - key: applicationId
+    value: string
+examples:
+  - response:
+      statusCode: 200
+      statusText: OK
+      body:
+        type: json
+        content: |-
+          [
+            {
+              "id": "string",
+              "applicationId": "string",
+              "documentType": "string",
+              "fileName": "string",
+              "uploadedAt": "1980-05-20T20:06:25.739Z",
+              "verificationStatus": "verified"
+            },
+            {
+              "id": "string",
+              "applicationId": "string",
+              "documentType": "string",
+              "fileName": "string",
+              "uploadedAt": "1947-08-27T15:04:27.314Z",
+              "verificationStatus": "verified"
+            }
+          ]
+      headers:
+        - key: Content-Type
+          value: application/json
+    name: List of documents
