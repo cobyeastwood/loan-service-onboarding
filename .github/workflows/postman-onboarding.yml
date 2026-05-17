@@ -1,0 +1,30 @@
+name: Automated Postman API Onboarding
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "specs/openapi.yaml"
+
+jobs:
+  onboard-to-postman:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+      contents: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Execute Postman Onboarding Pipeline
+        uses: postman-cs/postman-api-onboarding-action@v0
+        with:
+          spec-url: https://raw.githubusercontent.com/${{ github.repository }}/main/specs/openapi.yaml
+          environments-json: '["dev", "staging", "prod"]'
+          generate-ci-workflow: false
+
+          postman-api-key: ${{ secrets.POSTMAN_API_KEY }}
+          postman-access-token: ${{ secrets.POSTMAN_ACCESS_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
