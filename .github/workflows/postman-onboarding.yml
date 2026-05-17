@@ -21,6 +21,9 @@ jobs:
       - name: Execute Postman Onboarding Pipeline
         uses: postman-cs/postman-api-onboarding-action@v0
         with:
+          project-name: ${{ github.event.repository.name }}
+          domain: "lending"
+          domain-code: "LOAN"
           spec-url: https://raw.githubusercontent.com/${{ github.repository }}/main/specs/openapi.yaml
           environments-json: '["dev", "staging", "prod"]'
           generate-ci-workflow: false
