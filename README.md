@@ -1,31 +1,31 @@
-Loan Origination Service - Postman Onboarding
-This repo hooks up the Loan Origination API spec to the Postman Enterprise Catalog using automated GitHub Actions.
+# Loan Origination Service - Postman Onboarding
 
-How I built this & key decisions
-Dynamic naming: Used ${{ github.event.repository.name }} to automatically use the Postman workspace name to the Git repository name, keeping the pipeline logic clean.
+This repository automates onboarding the Loan Origination API specification into Postman using GitHub Actions.
 
-Standardized paths: Maintained the strict specs/openapi.yaml file location pattern to keep the automated ingestion uniform with the rest of the services.
+---
 
-Universal vs. Per Service
-Universal: The underlying pipeline framework, checkout steps, permission blocks, and local tracking files are identical across the org.
+## Key Design Decisions
 
-Per Service: The metadata targets the Lending domain (domain: "lending", domain-code: "LOAN").
+- **Dynamic Naming:** Uses `${{ github.event.repository.name }}` to automatically derive the Postman workspace name from the Git repository, keeping the workflow reusable.
+- **Standardized Paths:** Locks the specification file to `specs/openapi.yaml` for ingestion.
+- **Universal vs. Per-Service:** The framework and triggers are identical across services, while the repository secrets and Postman catalog metadata point specifically to the Lending domain.
 
-What the Ops/Platform team needs to configure
-The platform team needs to handle a few specific environment and infrastructure steps for this service:
+## AWS Configuration Prerequisites
 
-Compute Infrastructure Auth: Configure security groups inside the Postman environments.
+The following parameters must be configured on the AWS side to support the loan service onboarding workflow:
 
-Secrets provisioning: Set up the repo's GitHub Actions Secrets with the required Postman API credentials.
+- **Base URLs:** Map the active regional endpoints for the Application Load Balancer (ALB) stages specified in the [loan-origination-api-openapi.yaml](https://github.com/postman-cs/cse-exercise/blob/main/specs/loan-origination-api-openapi.yaml) spec (e.g., Staging: `https://lending-api-staging.example.com/v1`, Dev: `https://lending-api-dev.example.com/v1`).
+- **Test Tokens & Certificates:** Provide valid mock credentials matching the service's security architecture to populate Postman variables:
+  - **mTLS Layer:** Provide valid client certificates and keys to configure Postman's global Settings/Certificates for handshake validation.
+  - **JWT:** Internal service-to-service tokens containing the `refunds` scope.
+  - **Network & VPC Access:** If the application is hosted through a cloud provider, ensure your security groups are configured to allow inbound traffic from GitHub runner and Postman agent IP addresses.
 
-How to run, validate, and trade-offs
-To run: Push an update to specs/openapi.yaml on the main branch, or manually trigger the workflow from the Actions tab.
+## Execution & Validation
 
-Validation: Verify the postman/ directory is successfully created and committed back to the repo root. Check the Postman account to confirm the workspace is visible.
+- **To Run:** Push an update to `specs/openapi.yaml` on the `main` branch, or manually trigger the workflow from the Actions tab.
+- **Validation:** Verify that the `postman/` directory is generated and committed back to the repo root, and confirm the corresponding workspace is visible in the Postman UI.
 
-Trade-offs: Same as the payments service, the pipeline uses a YAML schema rather than JSON.
+## AI Transparency & Debugging
 
-AI Usage & Debugging
-What AI did: Used AI to scaffold the base workflow configuration and help think through the architectural mapping for the GitLab CI blocker.
-
-What I wrote/validated manually: I handled the actual end to end execution testing against my Postman account. I manually configured the repository tokens, tested the workflow by running it through multiple manual reruns to ensure it updated in postman properly, and verified that the YAML outputs correctly mapped inside Spec Hub.
+- **AI Generation:** Used an AI assistant to scaffold the base workflow configuration and structure the architectural mapping for the GitLab CI alternative.
+- **Manual Validation:** Handled the end-to-end execution testing against a live Postman account. Manually configured the repository tokens, executed consecutive manual reruns to verify consistent workspace updates, and validated that the collections correctly mapped inside Spec Hub.
