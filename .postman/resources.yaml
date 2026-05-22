@@ -13,9 +13,9 @@ localResources:
     - ../specs/openapi.yaml
 cloudResources:
   collections:
-    ../postman/collections/[Baseline] loan-service-onboarding: 11045720-a8ff06f6-0fb4-4c7e-8a15-28629d395354
-    ../postman/collections/[Smoke] loan-service-onboarding: 11045720-031af746-9d62-4cca-9115-cf0e16784305
-    ../postman/collections/[Contract] loan-service-onboarding: 11045720-9ce5ecec-93c1-40d9-aeb6-a87d744afe9e
+    ../postman/collections/[Baseline] loan-service-onboarding: 11045720-c8ddf574-35f8-48a4-9510-70e99ba755e5
+    ../postman/collections/[Smoke] loan-service-onboarding: 11045720-9473aaef-ffe5-4e8c-8863-969ef9f65033
+    ../postman/collections/[Contract] loan-service-onboarding: 11045720-c4574cde-e900-441c-ad44-c1b549106661
   environments:
     ../postman/environments/dev.postman_environment.json: 11045720-fc4c670f-1b9d-4b1b-b7a0-1db77ae43724
     ../postman/environments/staging.postman_environment.json: 11045720-07e5e06a-707f-4aff-9442-b86fe8c684dc

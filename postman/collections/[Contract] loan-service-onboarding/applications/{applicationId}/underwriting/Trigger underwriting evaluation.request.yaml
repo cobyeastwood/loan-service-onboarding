@@ -88,9 +88,9 @@ examples:
           {
             "applicationId": "string",
             "status": "pending",
-            "decision": "referred_to_manual",
-            "riskScore": 81,
-            "evaluatedAt": "1959-08-21T22:00:35.977Z"
+            "decision": "approved",
+            "riskScore": 80,
+            "evaluatedAt": "1969-06-09T21:28:05.496Z"
           }
       headers:
         - key: Content-Type

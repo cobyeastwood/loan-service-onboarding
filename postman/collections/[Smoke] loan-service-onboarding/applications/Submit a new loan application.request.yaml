@@ -48,17 +48,17 @@ examples:
             "id": "string",
             "applicantId": "string",
             "productType": "string",
-            "requestedAmount": 1680.598160231872,
-            "termMonths": 32,
-            "status": "withdrawn",
-            "createdAt": "2023-10-26T03:23:02.352Z",
-            "updatedAt": "2018-01-29T16:27:18.339Z",
+            "requestedAmount": 2497.0806220386453,
+            "termMonths": 3936,
+            "status": "approved",
+            "createdAt": "1982-02-07T23:41:38.977Z",
+            "updatedAt": "1988-04-11T11:07:07.850Z",
             "underwritingResult": {
               "applicationId": "string",
-              "status": "completed",
+              "status": "failed",
               "decision": "approved",
-              "riskScore": 62,
-              "evaluatedAt": "1967-05-15T06:52:48.381Z"
+              "riskScore": 48,
+              "evaluatedAt": "1947-09-17T20:37:24.695Z"
             }
           }
       headers:
